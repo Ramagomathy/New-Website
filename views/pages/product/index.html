@@ -1,0 +1,52 @@
+{% extends "layouts/default.html" %}
+{% include "partials/header.html" %}
+{% block content %}
+<section>
+    <div class="product-hero-bg hero-bg" style="background-image: url({{getAssetUrl(entry.banner[0].banner_img.url)}})">
+        <div class="aligned-container typed-container text-center">
+            <div class="container">
+                <div>
+                    {{entry.banner[0].description}}
+                </div>
+                <a href="/" class="btn btn-primary mrm">{{entry.banner[0].cta.link}}</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+        <section class="pricing  margin-bottom-max">
+            <div class="container text-center">
+                {{entry.products.content}}
+                <div class="row">
+                    {% for feature in entry.products.plans %}
+                    <div class="col-md-4 col-sm-4">
+                        <div class="prices price-1">
+                            <div class="price-inner">
+                                <h3>{{feature.title}}</h3>
+                                {% if loop.index == loop.length %}
+                                <div class="contact-wrap">
+                                    {% else %}
+                                    <div class="cost-line">
+                                        {% endif %}
+                                        {{feature.amount}}
+                                    </div>
+                                    <p>{{feature.label}}</p>
+                                </div>
+                                {{feature.features}}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+        </section>
+
+        <div class="stay-tune-wrap">
+            <div class="container text-center">
+                <a href="" class="btn btn-tertiary">{{entry.try_now.title}}</a>
+                {{entry.try_now.content}}
+            </div>
+        </div>
+</section>
+{% endblock %}
+{% include "partials/footer.html" %}
