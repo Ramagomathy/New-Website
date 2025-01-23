@@ -1,46 +1,40 @@
 {% extends "layouts/default.html" %}
 {% block content %} 
 <section>
-    <div class="wrapper">
-        <div class="main-container">
-            <section class="team-wrap">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4 margin-top-50 margin-bottom">
-                            {{entry.team_section.content}}
-                            <a href="#" class="btn btn-primary mrl">{{entry.team_section.cta[0].title}}</a>
-                    
-                        </div>
-                        <div class="col-md-8">
-                            <img class="img-responsive" src="{{getAssetUrl(entry.team_section.image.url)}}" alt="">
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section class="promotion-wrap margin-top-max margin-bottom-max">
-                <div class="container">
-                    <div class="text-center">
-                        {{entry.promote.description}}
-                    </div>
-                    <div class="row">
-                        <div class="col-md-offset-2 col-md-8 text-justify">
-                            <p>{{entry.promote.sub_content}}</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <div class="blockquote-wrap" style="background-image: url({{getAssetUrl(entry.testimonials[0].background_image.url)}});">
-                <div class="background-overlay"></div>
-                <div class="container">
+    <div class="about-container">
+        <!-- Team Section -->
+        <div class="team-section">
+            <div class="team-content">
+                {{ entry.team_section.content }}
+                <a href="#" class="btn btn-primary">{{ entry.team_section.cta[0].title }}</a>
+            </div>
+            <div class="team-image">
+                <img src="{{ getAssetUrl(entry.team_section.image.url) }}" alt="Team Image">
+            </div>
+        </div>
+
+        <!-- Promotion Section -->
+        <div class="promotion-section">
+            <div class="promotion-card">
+                <p>{{ entry.promote.description }}</p>
+            </div>
+            <div class="promotion-card">
+                <p>{{ entry.promote.sub_content }}</p>
+            </div>
+        </div>
+
+        <!-- Testimonial Section -->
+        <div class="testimonial-section" style="background-image: url({{ getAssetUrl(entry.testimonials[0].background_image.url) }});">
+            <div class="background-overlay"></div>
+            <div class="testimonial-carousel">
+                {% for testimonial in entry.testimonials %}
+                <div class="testimonial-item{% if forloop.first %} active{% endif %}">
                     <blockquote>
-                        <p>{{entry.testimonials[0].description}}</p>
-                        <p class="speaker">{{entry.testimonials[0].name}}</p>
-                    </blockquote>
-                    <blockquote>
-                        <p>{{entry.testimonials[1].description}}</p>
-                        <p class="speaker">{{entry.testimonials[1].name}}</p>
+                        <p>"{{ testimonial.description }}"</p>
+                        <p class="testimonial-name">- {{ testimonial.name }}</p>
                     </blockquote>
                 </div>
+                {% endfor %}
             </div>
         </div>
     </div>
