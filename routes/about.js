@@ -1,6 +1,4 @@
-/**
- * Created by pradeep on 18/4/17.
- */
+
 var express = require('express');
 var router = express.Router();
 
@@ -12,7 +10,6 @@ router.get('/', function(req, res, next){
             res.render('pages/about_page/index.html', {
                 entry: result[0],
             });
-            console.log(result[0].team_section.cta[0]);
         }, function error(error) {
             next(error);
         });
