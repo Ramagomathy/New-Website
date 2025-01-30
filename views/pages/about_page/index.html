@@ -6,10 +6,14 @@
         <div class="team-section">
             <div class="team-content">
                 {{ entry.team_section.content }}
-                <a href="#" class="btn btn-primary">{{ entry.team_section.cta[0].title }}</a>
+                <a href="#" id="playVideoButton" class="btn btn-primary">{{ entry.team_section.cta[0].title }}</a>
             </div>
             <div class="team-image">
-                <img src="{{ getAssetUrl(entry.team_section.image.url) }}" alt="Team Image">
+                <video id="teamVideo" controls style="display: none; width: 100%; max-width: 500px; border-radius: 10px;">
+                    <source src="{{ getAssetUrl(entry.team_section.cta[0].vedio.url) }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <img id="teamImage" src="{{ getAssetUrl(entry.team_section.image.url) }}" alt="Team Image" style="display: block;">
             </div>
         </div>
 

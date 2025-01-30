@@ -56,6 +56,104 @@
     background-color: #8fc0a9;
     transform: scale(1.05);
 }
+/* General Modal Styling */
+.modal-content {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-family: 'Arial', sans-serif;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: flex-end;
+    border-bottom: none;
+}
+
+.modal-header .close {
+    font-size: 24px;
+    color: #333;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.modal-header .close:hover {
+    color: #ff5c5c;
+}
+
+.modal-body {
+    text-align: center;
+    padding: 20px 30px;
+}
+
+.modal-body h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: whitesmoke;
+    margin-bottom: 20px;
+}
+
+.modal-body form {
+    margin-top: 15px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.modal-dialog {
+    max-width: 400px;
+    margin: 30px auto;
+}
+
+/* Responsive Styling */
+@media (max-width: 576px) {
+    .modal-dialog {
+        margin: 15px;
+    }
+
+    .modal-body {
+        padding: 15px 20px;
+    }
+
+    .modal-body h2 {
+        font-size: 20px;
+    }
+}
+
 
 .home-hero {
     height: 490px;
@@ -68,8 +166,9 @@
 
 .hero-image {
     width: 100%;
-    height: 60%;
-    object-fit: cover;
+    height: 400px;
+    background-size: 100% 100%;
+    border: 1px solid black;
 }
 
 .hero-overlay {
@@ -165,29 +264,60 @@
 .carousel {
     position: relative;
     overflow: hidden;
-    background-color: #000;
+    width: 100%;
+    height: 400px;
 }
 
 .carousel-inner {
-    display: flex;
-    animation: slide 10s infinite;
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 
 .carousel-item {
-    flex: 0 0 100%;
-    position: relative;
+    display: none;
+    width: 100%;
+    height: 100%;
     background-size: cover;
     background-position: center;
 }
-
 .carousel-content {
     position: absolute;
-    right: 5%;
-    top: 50%;
+    right: 5%; /* Move the content to the right */
+    top: 50%; /* Center vertically */
     transform: translateY(-50%);
-    color: #add8e6;
-    padding: 4rem;
-    background: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.6); /* Add a semi-transparent background */
+    padding: 2.5rem; /* Add padding to make it more spacious */
+    border-radius: 20px; /* Rounded corners for better aesthetics */
+    max-width: 50%; /* Limit the width to 40% of the carousel */
+    text-align: left; /* Align text to the left */
+    font-size: 2.5rem; /* Increase the font size */
+    line-height: 1.8; /* Increase line height for better readability */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Subtle shadow effect */
+}
+
+.carousel-item {
+    position: relative; /* Ensure the content positions correctly within the slide */
+}
+   
+.search-section {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.search-bar input {
+    width: 50%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: #1e90ff;
+    box-shadow: 0 0 8px rgba(30, 144, 255, 0.5);
 }
 
 .pricing-section {
@@ -208,21 +338,21 @@
     flex-wrap: wrap;
 }
 
-    .product-card {
-        width: 300px;
-        height: 450px;
-        border: 1px solid #ddd;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-        background: black;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-        margin: 10px;
-        padding: 15px;
-    }
+.product-card {
+    width: 300px;
+    height: 450px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    background: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px;
+    padding: 15px;
+}
 
 .product-plan-1 { background-color: #1a1a40; }
 .product-plan-2 { background-color: #002147; }
@@ -234,6 +364,7 @@
     object-fit: cover;
     border-radius: 5px;
 }
+
 .product-card h3, 
 .product-card .price, 
 .product-card .label, 
@@ -244,20 +375,30 @@
 }
 
 .buy-button {
-    display: block;
-padding: 10px 20px;
-color: #fff;
-background-color: #1e90ff;
-border: none;
-border-radius: 5px;
-text-decoration: none;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #ffffff;
+    background-color: #1e90ff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .buy-button:hover {
     background-color: #4682b4;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05); /* Subtle scaling effect */
 }
 
-
+.buy-button:active {
+    transform: scale(0.95);
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3);
+}
 /* General container styling */
 .feature-container {
     max-width: 1200px;
@@ -426,6 +567,27 @@ text-decoration: none;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
+.video-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    display: none; /* Initially hidden */
+}
+
+.video-container video {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
 
 /* Promotion Section */
 .promotion-section {

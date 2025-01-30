@@ -1,40 +1,43 @@
 {% extends "layouts/default.html" %}
 {% include "partials/header.html" %}
 {% block content %}
-<section id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+<section id="productCarousel" class="carousel w3-content w3-display-container">
     <div class="carousel-inner">
         {% for banner in entry.banner %}
-        <div class="carousel-item{% if forloop.first %} active{% endif %}" 
-            style="background-image: url({{ getAssetUrl(banner.banner_img.url) }}); height: 80vh; background-size: cover;margin: bottom 20px; background-position: center;">
+        <div class="carousel-item mySlides" 
+            style="background-image: url({{ getAssetUrl(banner.banner_img.url) }});
+             width: 100%; height: 400px; background-size: 100% 100%; border: 1px solid black;";">
             <div class="carousel-content">
-                <p>{{ banner.description }}</p>
+                <p style="margin: 0; 
+                word-wrap: break-word; 
+                text-align: right; ">{{ banner.description }}</p>
             </div>
         </div>
         {% endfor %}
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
+</section>
+
+<section class="search-section">
+    <div class="search-bar">
+        <input type="text" id="productSearch" placeholder="Search for products...">
+    </div>
 </section>
 
 <section class="pricing-section">
     <div class="pricing-header">
         <p>{{ entry.products.content }}</p>
     </div>
-    <div class="pricing-cards">
+    <div class="pricing-cards" id="productCards">
         {% for feature in entry.products.plans %}
-        <div class="product-card product-plan-{{ forloop.counter }}">
+        <div class="product-card product-plan-{{ forloop.counter }}" data-title="{{ feature.title }}">
             <img src="{{ getAssetUrl(feature.image.url) }}" alt="{{ feature.title }}" class="product-image">
             <h3>{{ feature.title }}</h3>
             <div class="price">{{ feature.amount }}</div>
             <p class="label">{{ feature.label }}</p>
             <div class="features">{{ feature.features }}</div>
-            <a href="/buy" class="buy-button">Buy Now</a>
+            <a href="/buy" class="buy-button" data-title="{{ feature.title }}" data-price="{{ feature.amount }}" data-label="{{ feature.label }}" data-features="{{ feature.features }}">
+   Buy Now
+</a>
         </div>
         {% endfor %}
     </div>

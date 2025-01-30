@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    let slideIndex = 0;
     var $header = $('.header-animated');
     var $headers = $('.header-animated opaque');
     var $logoAlt = $header.find('.logo > img').data('logo-alt'); // white logo
@@ -9,6 +10,15 @@ $(document).ready(function() {
        $(".header").addClass("opaque");
        $header.find('.logo > img').attr('src', $logoDefault);
     }
+    function showSlides() {
+        let slides = $(".mySlides");
+        slides.hide(); // Hide all slides
+        slideIndex++;
+        if (slideIndex > slides.length) slideIndex = 1;
+        slides.eq(slideIndex - 1).fadeIn(1000); // Fade in the current slide
+    }
+    showSlides(); // Show the first slide
+    setInterval(showSlides, 5000); 
 
     $('#tabs a').click(function(e) {
         e.preventDefault()
@@ -31,6 +41,17 @@ $(document).ready(function() {
     }, function() {
         $(".dropdown").removeClass("open")
     })
+    $("#productSearch").on("keyup", function () {
+        let input = $(this).val().toUpperCase();
+        $(".product-card").each(function () {
+            let title = $(this).data("title").toUpperCase();
+            if (title.indexOf(input) > -1) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    });
 
     // typing Effect 
     var stringArray = window.entry ? window.entry.hero_banner.rolling_text : null;
@@ -72,6 +93,39 @@ $(document).ready(function() {
     $('#login_btn').click(function(){
         location.reload(true);
     });
+    $('.buy-button').on('click', function (event) {
+        event.preventDefault(); // Prevent default anchor behavior
+
+        // Get product details from data attributes
+        const productTitle = $(this).data('title');
+        const productPrice = $(this).data('price');
+        const productLabel = $(this).data('label');
+        const productFeatures = $(this).data('features');
+
+        // Display the details in a modal (optional)
+        alert(
+            `Product: ${productTitle}\nPrice: ${productPrice}\nLabel: ${productLabel}\nFeatures: ${productFeatures}`
+        );
+
+        // Redirect or send data to server for purchase
+        // Example: window.location.href = '/buy?title=' + productTitle + '&price=' + productPrice;
+    });
+    $("#playVideoButton").on("click", function (e) {
+        e.preventDefault(); // Prevent the default link behavior
+
+        // Hide the image and show the video
+        $("#teamImage").hide();
+        $("#teamVideo").show();
+
+        // Play the video
+        $("#teamVideo")[0].play();
+    });
+
+        
+        
+        // Change slide every 5 seconds
+
+        // Search Functionality
 
     //$('form').submit(function(){
     //    location.reload(true);
